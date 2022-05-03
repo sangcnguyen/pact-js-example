@@ -1,0 +1,140 @@
+{
+  "consumer": {
+    "name": "movie consumer"
+  },
+  "provider": {
+    "name": "movie provider"
+  },
+  "interactions": [
+    {
+      "description": "a request to list all movies",
+      "providerState": "have a list of movies",
+      "request": {
+        "method": "GET",
+        "path": "/movies"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": [
+          {
+            "id": 1,
+            "name": "Movie 1",
+            "year": 2008
+          },
+          {
+            "id": 1,
+            "name": "Movie 1",
+            "year": 2008
+          },
+          {
+            "id": 1,
+            "name": "Movie 1",
+            "year": 2008
+          },
+          {
+            "id": 1,
+            "name": "Movie 1",
+            "year": 2008
+          },
+          {
+            "id": 1,
+            "name": "Movie 1",
+            "year": 2008
+          }
+        ],
+        "matchingRules": {
+          "$.body": {
+            "min": 5
+          },
+          "$.body[*].*": {
+            "match": "type"
+          },
+          "$.body[*].name": {
+            "match": "type"
+          },
+          "$.body[*].year": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": "a request for a movie with ID 1",
+      "providerState": "has a movie with ID 1",
+      "request": {
+        "method": "GET",
+        "path": "/movies/1",
+        "matchingRules": {
+          "$.path": {
+            "match": "regex",
+            "regex": "\\/movies\\/[0-9]+"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": {
+          "id": 1,
+          "name": "The Shawshank Redemption",
+          "year": 1994
+        },
+        "matchingRules": {
+          "$.body.id": {
+            "match": "type"
+          },
+          "$.body.name": {
+            "match": "type"
+          },
+          "$.body.year": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": "a request to create a new movie",
+      "providerState": "create a new movie",
+      "request": {
+        "method": "POST",
+        "path": "/movies",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "id": 5,
+          "name": "Doctor Strange in the Multiverse of Madness",
+          "year": 2022
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": {
+          "id": 5,
+          "name": "Doctor Strange in the Multiverse of Madness",
+          "year": 2022
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

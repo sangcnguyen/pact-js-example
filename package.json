@@ -1,0 +1,23 @@
+{
+  "name": "pact",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:consumer": "jest consumer/consumer.test.js --testTimeout=20000",
+    "test:provider": "jest provider/provider.test.js --testTimeout=20000 --force-exit",
+    "publish:contract": "node ./publish.js",
+    "provider": "node provider/provider-service.js"
+  },
+  "author": "Sang Nguyen",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.18.1"
+  },
+  "devDependencies": {
+    "@pact-foundation/pact": "9.17.3",
+    "@pact-foundation/pact-node": "^10.17.2",
+    "axios": "0.27.2",
+    "jest": "28.0.3"
+  }
+}
